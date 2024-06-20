@@ -25,6 +25,7 @@ const servers = {
   ],
 };
 
+let Agora;
 let init = async () => {
   client = await AgoraRTM.createInstance(APP_ID);
   await client.login({ uid, token });

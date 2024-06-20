@@ -1,11 +1,7 @@
 let APP_ID = "59a94246d6c244d7b261ec179d9b1c02";
-
-// let Agora;
-// let AgoraRTM
-// let createInstance:
-
-let token = null;
-let uid = String(Math.floor(Math.random() * 10000));
+// let AgoraRTM;
+// let token = null;
+// let uid = String(Math.floor(Math.random() * 10000));
 
 let Client;
 let channel;

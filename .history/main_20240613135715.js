@@ -1,11 +1,7 @@
 let APP_ID = "59a94246d6c244d7b261ec179d9b1c02";
 
-// let Agora;
-// let AgoraRTM
-// let createInstance:
-
 let token = null;
-let uid = String(Math.floor(Math.random() * 10000));
+let uid = string(Math.floor(Math.random() * 10000));
 
 let Client;
 let channel;
@@ -26,19 +22,26 @@ const servers = {
 };
 
 let init = async () => {
+  // create client
   client = await AgoraRTM.createInstance(APP_ID);
   await client.login({ uid, token });
 
-  channel = client.createChannel(roomId);
+  // create channel
+  channel = client.createChannel("roomID");
   await channel.join();
 
-  channel.on("MemberJoined", handleUserJoined);
-  channel.on("MemberLeft", handleUserLeft);
+  channel.on("MemberJoined", handleUserJoined); // Occurs when another member joins (member) => {
 
-  client.on("MessageFromPeer", handleMessageFromPeer);
-
-  localStream = await navigator.mediaDevices.getUserMedia(constraints);
+  localStream = await navigator.mediaDevices.getUserMedia({
+    audio: false,
+    video: true,
+  });
   document.getElementById("user-1").srcObject = localStream;
+  createOffer();
+};
+
+let handleUserJoined = async (MemberId) => {
+  console.log("a new user has joined,", MemberId);
 };
 
 let createOffer = async () => {
@@ -71,7 +74,6 @@ let createOffer = async () => {
 
   console.log("offer:", offer);
 };
-
 init() // Call the init function to start the initialization process
   .then(() => {
     // This block executes if init() resolves successfully

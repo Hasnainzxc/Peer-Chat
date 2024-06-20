@@ -1,11 +1,7 @@
 let APP_ID = "59a94246d6c244d7b261ec179d9b1c02";
-
-// let Agora;
-// let AgoraRTM
-// let createInstance:
-
-let token = null;
-let uid = String(Math.floor(Math.random() * 10000));
+// let AgoraRTM;
+// let token = null;
+// let uid = String(Math.floor(Math.random() * 10000));
 
 let Client;
 let channel;
@@ -25,21 +21,21 @@ const servers = {
   ],
 };
 
-let init = async () => {
-  client = await AgoraRTM.createInstance(APP_ID);
-  await client.login({ uid, token });
+// let init = async () => {
+//   client = await AgoraRTM.createInstance(APP_ID);
+//   await client.login({ uid, token });
 
-  channel = client.createChannel(roomId);
-  await channel.join();
+//   channel = client.createChannel(roomId);
+//   await channel.join();
 
-  channel.on("MemberJoined", handleUserJoined);
-  channel.on("MemberLeft", handleUserLeft);
+//   channel.on("MemberJoined", handleUserJoined);
+//   channel.on("MemberLeft", handleUserLeft);
 
-  client.on("MessageFromPeer", handleMessageFromPeer);
+//   client.on("MessageFromPeer", handleMessageFromPeer);
 
-  localStream = await navigator.mediaDevices.getUserMedia(constraints);
-  document.getElementById("user-1").srcObject = localStream;
-};
+//   localStream = await navigator.mediaDevices.getUserMedia(constraints);
+//   document.getElementById("user-1").srcObject = localStream;
+// };
 
 let createOffer = async () => {
   peerConnection = new RTCPeerConnection(servers);
@@ -71,7 +67,6 @@ let createOffer = async () => {
 
   console.log("offer:", offer);
 };
-
 init() // Call the init function to start the initialization process
   .then(() => {
     // This block executes if init() resolves successfully
